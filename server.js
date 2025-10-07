@@ -1,11 +1,20 @@
 const express = require('express');
 const app = express();
-const feedbackRoutes = require('./routers/feedbacks');
 
-app.use(express.json()); 
-app.use('/feedbacks', feedbackRouters);
+app.use(express.json());
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+// Importação das rotas
+const provasRoutes = require('./routes/provas');
+
+// Uso das rotas
+app.use('/provas', provasRoutes);
+
+// Rota inicial
+app.get('/', (req, res) => {
+    res.send('API Plataforma de Testes Online - Ativa!');
+});
+
+// Inicialização do servidor
+app.listen(3000, () => {
+    console.log('Servidor rodando na porta 3000');
 });
